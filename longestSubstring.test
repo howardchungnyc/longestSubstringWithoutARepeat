@@ -1,0 +1,53 @@
+const assert = require("assert");
+const lengthOfLongestSubstring = require("./longestSubstring");
+
+function runTests() {
+  const tests = [
+    {
+      input: "abcabcbb",
+      expected: 3,
+      description: "Test case with substring 'abc'",
+    },
+    {
+      input: "bbbbb",
+      expected: 1,
+      description: "Test case with repeating characters",
+    },
+    {
+      input: "pwwkew",
+      expected: 3,
+      description: "Test case with substring 'wke'",
+    },
+    { input: "", expected: 0, description: "Test case with empty string" },
+    { input: "aab", expected: 2, description: "Test case with substring 'ab'" },
+    {
+      input: "dvdf",
+      expected: 3,
+      description: "Test case with substring 'vdf'",
+    },
+    {
+      input:
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
+      expected: 95,
+      description: "Test case with all unique characters",
+    },
+  ];
+
+  tests.forEach((test) => {
+    const { input, expected, description } = test;
+    console.log(`Running test: ${description}`);
+
+    try {
+      const actual = lengthOfLongestSubstring(input);
+      assert.strictEqual(actual, expected);
+      console.log("Test passed!\n");
+    } catch (error) {
+      console.error("Status: Test failed");
+      console.error(`Expected: ${expected}`);
+      console.error(`Actual: ${error.actual}`);
+      console.error(`Assertion failed: ${error.message}\n`);
+    }
+  });
+}
+
+module.exports = runTests;
